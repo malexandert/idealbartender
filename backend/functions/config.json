@@ -2,5 +2,10 @@
     {
         "name": "function0",
         "private": false
+    },
+    {
+        "name": "resetFunc",
+        "private": false,
+        "can_evaluate": {}
     }
 ]
