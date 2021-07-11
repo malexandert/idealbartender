@@ -1,0 +1,39 @@
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-page-buttons {
+  margin: 10px 0px;
+  height: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.login-page-button {
+  width: 250px;
+}
+
+/* LoginForm */
+.login-form {
+  width: 100%;
+}
+
+.login-form-buttons {
+  margin-left: auto;
+  width: 145px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+
+.login-form-error-banner {
+  margin-bottom: 10px;
+}
+
+.login-form-input {
+  margin-bottom: 10px;
+}
+
