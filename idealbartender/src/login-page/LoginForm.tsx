@@ -20,9 +20,6 @@ const LoginForm = () => {
 
   const history = useHistory();
 
-  console.log(email);
-  console.log(password);
-
   const handleLogin = async () => {
     setError(undefined);
     setLoading(true);
@@ -39,7 +36,6 @@ const LoginForm = () => {
         const user = await app.logIn(credentials);
         setUser(user);
       } catch (e) {
-        console.log(e);
         setError(e.error);
       } finally {
         setLoading(false);
@@ -65,8 +61,7 @@ const LoginForm = () => {
         placeholder="your.email@website.com"
         onChange={(e) => setEmail(e.target.value)}
         disabled={loading}
-      >  
-      </TextInput>
+      />
       <TextInput
         className="login-form-input"
         label="Password"
@@ -75,8 +70,7 @@ const LoginForm = () => {
         placeholder="********"
         onChange={(e) => setPassword(e.target.value)}
         disabled={loading}
-      >
-      </TextInput>
+      />
       <div className="login-form-buttons">
         <Button
           variant={ButtonVariant.Primary}

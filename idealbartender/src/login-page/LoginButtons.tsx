@@ -16,7 +16,7 @@ const LoginButtons = () => {
         <Button
           className="login-page-button"
           variant={Variant.Primary}
-          onClick={() => history?.push('/login')}
+          onClick={() => history?.push('/register')}
         >
           Sign Up
         </Button>

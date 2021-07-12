@@ -4,7 +4,7 @@ import { Route, Router, Switch } from 'react-router-dom';
 import Card from '@leafygreen-ui/card';
 
 import App from './Home';
-import { LoginForm } from './login-page';
+import { LoginForm, RegisterForm } from './login-page';
 
 import './router.css';
 
@@ -17,6 +17,9 @@ const AppRouter = () => (
         <Switch>
           <Route path="/login">
             <LoginForm />
+          </Route>
+          <Route path="/register">
+            <RegisterForm />
           </Route>
           <Route path="/">
             <App />
