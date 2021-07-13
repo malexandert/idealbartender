@@ -9,12 +9,12 @@ import { REALM_APP_ID } from '../constants';
 
 import './add-recipe.css';
 
-const app = new Realm.App({ id: REALM_APP_ID });
-
-const mongodb = app.currentUser?.mongoClient('mongodb-atlas');
-const recipesCollection = mongodb?.db('idealbartender').collection('recipes');
-
 const AddRecipe = () => {
+  const app = new Realm.App({ id: REALM_APP_ID });
+
+  const mongodb = app.currentUser?.mongoClient('mongodb-atlas');
+  const recipesCollection = mongodb?.db('idealbartender').collection('recipes');
+
   const [recipeTitle, setRecipeTitle] = useState<string>();
   const [ingredients, setIngredients] = useState<string>();
   const [method, setMethod] = useState<string>();

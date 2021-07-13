@@ -10,12 +10,12 @@ import { REALM_APP_ID } from '../constants';
 
 import './timeline.css';
 
-const app = new Realm.App({ id: REALM_APP_ID });
-
-const mongodb = app.currentUser?.mongoClient('mongodb-atlas');
-const recipesCollection = mongodb?.db('idealbartender').collection('recipes');
-
 const Timeline = () => {
+  const app = new Realm.App({ id: REALM_APP_ID });
+
+  const mongodb = app.currentUser?.mongoClient('mongodb-atlas');
+  const recipesCollection = mongodb?.db('idealbartender').collection('recipes');
+
   const [recipes, setRecipes] = useState<any[]>();
 
   const history = useHistory();
@@ -33,20 +33,33 @@ const Timeline = () => {
     };
 
     loadDataAsync();
-  }, []);
+  }, [recipesCollection]);
+
+  const handleLogout = async () => {
+    await app.currentUser?.logOut();
+    history?.push('/');
+  };
 
   return (
     <div className="timeline">
       <H2 className="Home-header">
         Welcome to The Ideal Bartender
       </H2>
-      <Button
-        className="timeline-button"
-        variant={ButtonVariant.Primary}
-        onClick={() => history?.push('/add')}
-      >
-        Add new recipe
-      </Button>
+      <div className="timeline-buttons">
+        <Button
+          className="timeline-button"
+          variant={ButtonVariant.Primary}
+          onClick={() => history?.push('/add')}
+        >
+          Add new recipe
+        </Button>
+        <Button
+          className="timeline-button"
+          onClick={handleLogout}
+        >
+          Log out
+        </Button>
+      </div>
       {recipes?.map((recipe) => (
         <Card className="timeline-card" key={recipe?.userId}>
           {recipe?.userId !== app.currentUser?.id && (

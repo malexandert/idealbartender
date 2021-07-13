@@ -9,9 +9,9 @@ import { Body } from '@leafygreen-ui/typography';
 
 import { REALM_APP_ID } from '../constants';
 
-const app = new Realm.App({ id : REALM_APP_ID });
-
 const LoginForm = () => {
+  const app = new Realm.App({ id : REALM_APP_ID });
+
   const [loading, setLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
@@ -26,7 +26,7 @@ const LoginForm = () => {
 
     // Log out the current user before we try to log in
     if (user) {
-      app.currentUser?.logOut();
+      await app.currentUser?.logOut();
       setUser(null);
     }
 
@@ -34,11 +34,13 @@ const LoginForm = () => {
       const credentials = Realm.Credentials.emailPassword(email, password);
       try {
         const user = await app.logIn(credentials);
-        setUser(user);
+        if (user) {
+          setLoading(false);
+          history?.push('/timeline');
+        }
       } catch (e) {
-        setError(e.error);
-      } finally {
         setLoading(false);
+        setError(e.error);
       }
     }
   };

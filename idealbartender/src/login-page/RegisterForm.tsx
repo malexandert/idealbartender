@@ -8,9 +8,10 @@ import TextInput, { State as TextInputState } from '@leafygreen-ui/text-input';
 
 import { REALM_APP_ID } from '../constants';
 
-const app = new Realm.App({ id: REALM_APP_ID });
 
 const RegisterForm = () => {
+  const app = new Realm.App({ id: REALM_APP_ID });
+
   const [loading, setLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string>();
   const [emailState, setEmailState] = useState<TextInputState>(TextInputState.None);
@@ -63,8 +64,12 @@ const RegisterForm = () => {
     if (email && password && (password === confirmPassword)) {
       try {
         await app.emailPasswordAuth.registerUser(email, password);
-        setLoading(false);
-        history?.push('/timeline');
+        const credentials = Realm.Credentials.emailPassword(email, password);
+        const user = await app.logIn(credentials);
+        if (user) {
+          setLoading(false);
+          history?.push('/timeline');
+        }
       } catch (e) {
         setError(e.error);
         setLoading(false);
