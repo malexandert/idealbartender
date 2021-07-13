@@ -29,3 +29,7 @@
 .timeline-card-text:last-child {
     margin-bottom: 0px;
 }
+
+.timeline-error-banner {
+    margin-bottom: 25px;
+}

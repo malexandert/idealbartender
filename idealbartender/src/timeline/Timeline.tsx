@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useHistory } from 'react-router-dom';
 import * as Realm from 'realm-web';
+import Banner, { Variant as BannerVariant } from '@leafygreen-ui/banner';
 import Button, { Variant as ButtonVariant } from '@leafygreen-ui/button';
 import Card from '@leafygreen-ui/card';
 import { Body, H2 } from '@leafygreen-ui/typography';
@@ -17,6 +18,7 @@ const Timeline = () => {
   const recipesCollection = mongodb?.db('idealbartender').collection('recipes');
 
   const [recipes, setRecipes] = useState<any[]>();
+  const [error, setError] = useState<string | undefined>();
 
   const history = useHistory();
 
@@ -25,19 +27,29 @@ const Timeline = () => {
       try {
         const recipes = await recipesCollection?.find({});
         if (recipes) {
+          console.log(recipes);
           setRecipes(recipes.reverse());
         }
       } catch (e) {
-        console.log(e);
+        setError(e);
       }
     };
 
     loadDataAsync();
-  }, [recipesCollection]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleLogout = async () => {
     await app.currentUser?.logOut();
     history?.push('/');
+  };
+
+  const handleDelete = async (id: string) => {
+    try {
+      await recipesCollection?.deleteOne({ _id: id });
+    } catch {
+      setError('You can only delete your own recipes');
+    }
   };
 
   return (
@@ -45,6 +57,16 @@ const Timeline = () => {
       <H2 className="Home-header">
         Welcome to The Ideal Bartender
       </H2>
+      {error && (
+        <Banner
+          className="timeline-error-banner"
+          variant={BannerVariant.Danger}
+          dismissible
+          onClose={() => setError(undefined)}
+        >
+          {error}
+        </Banner>
+      )}
       <div className="timeline-buttons">
         <Button
           className="timeline-button"
@@ -61,7 +83,7 @@ const Timeline = () => {
         </Button>
       </div>
       {recipes?.map((recipe) => (
-        <Card className="timeline-card" key={recipe?.userId}>
+        <Card className="timeline-card" key={recipe?._id}>
           {recipe?.userId !== app.currentUser?.id && (
             <Body className="timeline-card-text">
               <b>User ID</b>: <br/> {recipe?.userId}
@@ -76,6 +98,14 @@ const Timeline = () => {
           <Body className="timeline-card-text">
             <b>Method</b> <br /> {recipe?.method}
           </Body>
+          <div>
+            <Button
+              variant={ButtonVariant.Danger}
+              onClick={() => handleDelete(recipe?._id)}
+            >
+              Delete Recipe
+            </Button>
+          </div>
         </Card>
       ))}
     </div>
