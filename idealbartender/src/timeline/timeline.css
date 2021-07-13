@@ -23,6 +23,18 @@
     margin-bottom: 0px;
 }
 
+.timeline-secret-card {
+    background: rgb(123, 215, 246);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 30px;
+    margin-bottom: 10px;
+}
+.timeline-secret-card:last-child {
+    margin-bottom: 0px;
+}
+
 .timeline-card-text {
     margin-bottom: 10px;
 }

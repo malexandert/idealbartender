@@ -1452,6 +1452,15 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@leafygreen-ui/a11y@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@leafygreen-ui/a11y/-/a11y-1.2.1.tgz#e349d35a9a1c8445a0cc6e87138ba2ef23835ef6"
+  integrity sha512-bcWJdyUUcimheVwaWTjz8aQZibXzDCTOQBlGtJ/HwJIil3zaEDivHERPfcBR0bMd/EpO0Szc0aS6vIjvcL5/LA==
+  dependencies:
+    "@leafygreen-ui/emotion" "^3.0.1"
+    "@leafygreen-ui/hooks" "^7.0.0"
+    "@leafygreen-ui/lib" "^8.0.0"
+
 "@leafygreen-ui/banner@^3.0.8":
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/@leafygreen-ui/banner/-/banner-3.0.8.tgz#f69ff1373c180dc7f34b7bb41dd658f0e0afa49d"
@@ -1566,6 +1575,16 @@
     "@leafygreen-ui/lib" "^8.0.0"
     "@leafygreen-ui/palette" "^3.2.1"
     "@leafygreen-ui/typography" "^8.0.2"
+
+"@leafygreen-ui/toggle@^7.0.3":
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/@leafygreen-ui/toggle/-/toggle-7.0.3.tgz#822bfaa0278e7b466c93b450247b95255c88c7cd"
+  integrity sha512-UxBYXutw3m7bQKXpFwRt77MAmvCeTJuKUMTk4CKWZIAQHRcR/KRSXYNYGe4DVkoW8F6RLcLd8UwgJjCqU125rQ==
+  dependencies:
+    "@leafygreen-ui/a11y" "^1.2.1"
+    "@leafygreen-ui/interaction-ring" "^1.0.4"
+    "@leafygreen-ui/lib" "^8.0.0"
+    "@leafygreen-ui/palette" "^3.2.1"
 
 "@leafygreen-ui/tokens@^0.5.2":
   version "0.5.2"

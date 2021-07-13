@@ -16,8 +16,10 @@ const Timeline = () => {
 
   const mongodb = app.currentUser?.mongoClient('mongodb-atlas');
   const recipesCollection = mongodb?.db('idealbartender').collection('recipes');
+  const secretRecipesCollection = mongodb?.db('idealbartender').collection('secretRecipes');
 
   const [recipes, setRecipes] = useState<any[]>();
+  const [secretRecipes, setSecretRecipes] = useState<any[]>();
   const [error, setError] = useState<string | undefined>();
 
   const history = useHistory();
@@ -26,9 +28,13 @@ const Timeline = () => {
     const loadDataAsync = async () => {
       try {
         const recipes = await recipesCollection?.find({});
+        const secretRecipes = await secretRecipesCollection?.find({});
         if (recipes) {
           console.log(recipes);
           setRecipes(recipes.reverse());
+        }
+        if (secretRecipes) {
+          setSecretRecipes(secretRecipes.reverse());
         }
       } catch (e) {
         setError(e);
@@ -47,6 +53,15 @@ const Timeline = () => {
   const handleDelete = async (id: string) => {
     try {
       await recipesCollection?.deleteOne({ _id: id });
+      const recipes = await recipesCollection?.find({});
+      const secretRecipes = await secretRecipesCollection?.find({});
+      if (recipes) {
+        console.log(recipes);
+        setRecipes(recipes.reverse());
+      }
+      if (secretRecipes) {
+        setSecretRecipes(secretRecipes.reverse());
+      }
     } catch {
       setError('You can only delete your own recipes');
     }
@@ -106,6 +121,19 @@ const Timeline = () => {
               Delete Recipe
             </Button>
           </div>
+        </Card>
+      ))}
+      {secretRecipes?.map((recipe) => (
+        <Card className="timeline-secret-card" key={recipe?._id}>
+          <Body className="timeline-card-text">
+            <b>Recipe Title</b>: <br /> {recipe?.recipeTitle}
+          </Body>
+          <Body className="timeline-card-text">
+            <b>Ingredients</b>: <br /> {recipe?.ingredients}
+          </Body>
+          <Body className="timeline-card-text">
+            <b>Method</b> <br /> {recipe?.method}
+          </Body>
         </Card>
       ))}
     </div>
