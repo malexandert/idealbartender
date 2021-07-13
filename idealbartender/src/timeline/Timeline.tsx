@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
+import { useHistory } from 'react-router-dom';
 import * as Realm from 'realm-web';
+import Button, { Variant as ButtonVariant } from '@leafygreen-ui/button';
 import Card from '@leafygreen-ui/card';
 import { Body, H2 } from '@leafygreen-ui/typography';
 
@@ -16,6 +18,7 @@ const recipesCollection = mongodb?.db('idealbartender').collection('recipes');
 const Timeline = () => {
   const [recipes, setRecipes] = useState<any[]>();
 
+  const history = useHistory();
 
   useEffect(() => {
     const loadDataAsync = async () => {
@@ -37,6 +40,13 @@ const Timeline = () => {
       <H2 className="Home-header">
         Welcome to The Ideal Bartender
       </H2>
+      <Button
+        className="timeline-button"
+        variant={ButtonVariant.Primary}
+        onClick={() => history?.push('/add')}
+      >
+        Add new recipe
+      </Button>
       {recipes?.map((recipe) => (
         <Card className="timeline-card" key={recipe?.userId}>
           {recipe?.userId !== app.currentUser?.id && (

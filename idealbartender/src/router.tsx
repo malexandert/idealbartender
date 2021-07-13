@@ -3,6 +3,7 @@ import { createBrowserHistory } from 'history';
 import { Route, Router, Switch } from 'react-router-dom';
 import Card from '@leafygreen-ui/card';
 
+import { AddRecipe } from './add-recipe';
 import App from './Home';
 import { LoginForm, RegisterForm } from './login-page';
 import { Timeline } from './timeline';
@@ -24,6 +25,9 @@ const AppRouter = () => (
           </Route>
           <Route path="/timeline">
             <Timeline />
+          </Route>
+          <Route path="/add">
+            <AddRecipe />
           </Route>
           <Route path="/">
             <App />

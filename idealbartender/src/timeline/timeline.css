@@ -4,6 +4,10 @@
     align-items: center;
 }
 
+.timeline-button {
+    margin-bottom: 25px;
+}
+
 .timeline-card {
     display: flex;
     flex-direction: column;
