@@ -5,3 +5,7 @@
 .add-recipe-input {
   margin-bottom: 10px;
 }
+
+.add-recipe-error-banner {
+  margin-bottom: 20px;
+}

@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { useHistory } from 'react-router-dom';
 import * as Realm from 'realm-web';
+import Banner, { Variant as BannerVariant } from '@leafygreen-ui/banner';
 import Button, { Variant as ButtonVariant } from '@leafygreen-ui/button';
 import TextInput from '@leafygreen-ui/text-input';
 
@@ -19,6 +20,7 @@ const AddRecipe = () => {
   const [ingredients, setIngredients] = useState<string>();
   const [method, setMethod] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | undefined>();
 
   const history = useHistory();
 
@@ -35,11 +37,23 @@ const AddRecipe = () => {
       history?.push('/timeline');
     } catch (e) {
       console.log(e);
+      setLoading(false);
+      setError('Failed to add new recipe');
     }
   };
 
   return (
     <div className="add-recipe">
+      {error && (
+        <Banner
+          className="add-recipe-error-banner"
+          variant={BannerVariant.Danger}
+          dismissible
+          onClose={() => setError(undefined)}
+        >
+          {error}
+        </Banner>
+      )}
       <TextInput
         className="add-recipe-input"
         label="Recipe Title"
