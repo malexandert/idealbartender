@@ -2,7 +2,7 @@ import { H2 } from '@leafygreen-ui/typography';
 
 import { LoginButtons } from './login-page';
 
-import './Home.css';
+import './home.css';
 
 const Home = () => {
   return (

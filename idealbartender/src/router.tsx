@@ -5,6 +5,7 @@ import Card from '@leafygreen-ui/card';
 
 import App from './Home';
 import { LoginForm, RegisterForm } from './login-page';
+import { Timeline } from './timeline';
 
 import './router.css';
 
@@ -20,6 +21,9 @@ const AppRouter = () => (
           </Route>
           <Route path="/register">
             <RegisterForm />
+          </Route>
+          <Route path="/timeline">
+            <Timeline />
           </Route>
           <Route path="/">
             <App />

@@ -63,9 +63,10 @@ const RegisterForm = () => {
     if (email && password && (password === confirmPassword)) {
       try {
         await app.emailPasswordAuth.registerUser(email, password);
+        setLoading(false);
+        history?.push('/timeline');
       } catch (e) {
         setError(e.error);
-      } finally {
         setLoading(false);
       }
     }
@@ -121,6 +122,7 @@ const RegisterForm = () => {
         <Button
           variant={ButtonVariant.Primary}
           disabled={loading}
+          onClick={handleSignup}
         >
           Submit
         </Button>

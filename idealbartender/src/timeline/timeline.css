@@ -1,0 +1,23 @@
+.timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeline-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 30px;
+    margin-bottom: 10px;
+}
+.timeline-card:last-child {
+    margin-bottom: 0px;
+}
+
+.timeline-card-text {
+    margin-bottom: 10px;
+}
+.timeline-card-text:last-child {
+    margin-bottom: 0px;
+}
