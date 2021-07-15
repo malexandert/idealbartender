@@ -7,5 +7,9 @@
         "name": "resetFunc",
         "private": false,
         "can_evaluate": {}
+    },
+    {
+        "name": "newFunc2",
+        "private": false
     }
 ]
