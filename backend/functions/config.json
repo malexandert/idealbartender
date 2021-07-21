@@ -4,12 +4,16 @@
         "private": false
     },
     {
+        "name": "newFunc2",
+        "private": false
+    },
+    {
         "name": "resetFunc",
         "private": false,
         "can_evaluate": {}
     },
     {
-        "name": "newFunc2",
+        "name": "newFunc3",
         "private": false
     }
 ]
