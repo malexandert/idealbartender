@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <>
       <H2 className="Home-header">
-        Welcome to The Ideal Bartender
+        Welcome to my house! go away!
       </H2>
       <LoginButtons />
     </>
