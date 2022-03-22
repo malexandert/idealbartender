@@ -8,12 +8,12 @@
         "private": false
     },
     {
+        "name": "newFunc3",
+        "private": false
+    },
+    {
         "name": "resetFunc",
         "private": false,
         "can_evaluate": {}
-    },
-    {
-        "name": "newFunc3",
-        "private": false
     }
 ]
